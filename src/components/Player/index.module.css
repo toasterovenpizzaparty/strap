@@ -2,13 +2,24 @@
   display: flex;
   position: relative;
   background-color: #3e1165;
+  width: 100%;
 }
 
 .player__waveform {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   margin: 0;
   padding: 0;
   width: 100%;
   min-height: 50px;
+}
+
+.player__waveform--spacer {
+  padding-top: 15.77%;
+  height: 0;
+  width: 100%;
 }
 
 .player__controls {

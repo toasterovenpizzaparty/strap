@@ -71,7 +71,6 @@ const loadAndPlayTrack = async () => {
 
   expect(axios.request).toHaveBeenCalledWith({
     responseType: "arraybuffer",
-    timeout: 5000,
     url: "http://myurltostream",
   });
 

@@ -79,6 +79,8 @@ const Player: React.FC<PlayerPropsType> = ({ url, wavePicture }) => {
 
   return (
     <div className={styles.player}>
+      <div className={styles["player__waveform--spacer"]} />
+      <img className={styles["player__waveform"]} src={wavePicture} />
       <div className={styles["player__controls"]}>
         <PlayButton
           data-test-id='play-button'
@@ -87,7 +89,6 @@ const Player: React.FC<PlayerPropsType> = ({ url, wavePicture }) => {
           isLoading={isTrackLoading}
         />
       </div>
-      <img className={styles["player__waveform"]} src={wavePicture} />
       <ErrorMessage
         className={styles.player__error}
         data-test-id='error-message'
