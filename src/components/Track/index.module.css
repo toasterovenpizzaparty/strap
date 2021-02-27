@@ -1,0 +1,71 @@
+.trackDetails {
+  display: flex;
+  flex: 1;
+  padding: 20px;
+  flex-direction: column;
+  color: #fff;
+}
+
+.details {
+  padding: 20px;
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #3e1165;
+}
+
+.details__title {
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.details__duration {
+  font-size: 1.2rem;
+}
+
+.details__picture {
+  margin: 0 20px;
+  width: 100px;
+  height: 100px;
+  padding: 0;
+  border-radius: 50px;
+}
+
+.waveform {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.waveform__skeleton {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 0;
+  padding-top: 15.77%; /* 280/1800 (waveform) */
+  background-color: #efefef;
+}
+
+.details__artist--skeleton,
+.details__duration--skeleton,
+.details__title--skeleton {
+  margin: 1rem 0;
+}
+
+.details__artist--skeleton {
+  width: 250px;
+  display: block;
+}
+
+.details__duration--skeleton {
+  width: 150px;
+  display: block;
+}
+
+.details__title--skeleton {
+  width: 400px;
+  display: block;
+}

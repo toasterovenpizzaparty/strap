@@ -1,0 +1,15 @@
+.search {
+  margin: 0;
+  padding: 20px;
+  background-color: #3e1165;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1000px;
+  text-align: center;
+}
+
+.searchButton {
+  margin: 0 10px;
+}

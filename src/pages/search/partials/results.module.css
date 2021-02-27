@@ -1,0 +1,10 @@
+.wrapper {
+  margin: 0 auto;
+  padding: 20px 0;
+  max-width: 1000px;
+}
+
+.loadmore {
+  width: 100%;
+  text-align: center;
+}

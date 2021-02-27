@@ -1,0 +1,34 @@
+.loader {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.loaderInvisible {
+  display: none;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.button {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  height: 45px;
+  width: 45px;
+  margin: auto;
+  padding: 20px;
+  background-color: #9cf0e1;
+  border-radius: 45px;
+}
