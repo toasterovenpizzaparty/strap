@@ -15,7 +15,15 @@ Features include:
 - A simple Equalizer to manipulate audio during playback.
 - Responsive layout
 
-Structure:
+# Getting started
+To get started simply run;
+`yarn install` and `yarn start`
+
+and navigate to `http://localhost:3000`
+
+Enjoy! :)
+
+# Structure:
 - Assets
 	- Holds all our assets, e.g. fonts, lottie, svg.
 - Components
