@@ -19,16 +19,27 @@
 }
 
 .button {
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  left: 0px;
-  right: 0;
-  bottom: 0;
-  height: 45px;
-  width: 45px;
   margin: auto;
-  padding: 20px;
+  padding: 5px;
+  height: 15px;
+  width: 15px;
   background-color: #9cf0e1;
   border-radius: 45px;
+  cursor: pointer;
+}
+
+@media (min-width: 500px) {
+  .button {
+    padding: 10px;
+    height: 25px;
+    width: 25px;
+  }
+}
+
+@media (min-width: 900px) {
+  .button {
+    padding: 20px;
+    height: 45px;
+    width: 45px;
+  }
 }

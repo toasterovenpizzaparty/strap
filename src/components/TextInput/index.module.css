@@ -3,6 +3,11 @@
   padding: 20px;
   border-radius: 30px;
   border: 0;
-  width: 600px;
   max-width: 600px;
+}
+
+@media (min-width: 800px) {
+  .textinput {
+    width: 600px;
+  }
 }

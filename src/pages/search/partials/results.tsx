@@ -108,20 +108,19 @@ const SearchResults: React.FC<SearchResultsPropsType> = ({
         <ErrorMessage data-test-id='result-error' isVisible={isError}>
           Something went wrong while retrieving tracks
         </ErrorMessage>
-        {isLoading
-          ? // Displays a skeletal ui while retrieving results.
-            Array.from({ length: 10 }).map((data, index) => (
-              <Track
-                title=''
-                duration={0}
-                artist=''
-                url=''
-                data-test-id={`track-${index}`}
-                key={`track-${index}`}
-                isSkeleton
-              />
-            ))
-          : trackList}
+        {trackList}
+        {isLoading && // Displays a skeletal ui while retrieving results.
+          Array.from({ length: 10 }).map((data, index) => (
+            <Track
+              title=''
+              duration={0}
+              artist=''
+              url=''
+              data-test-id={`track-${index}`}
+              key={`track-${index}`}
+              isSkeleton
+            />
+          ))}
         {!!nextHref && (
           // Display a load more button, appending more search results to the list.
           <div className={styles.loadmore}>

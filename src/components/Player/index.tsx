@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   IAudioBufferSourceNode,
   IAudioContext,
@@ -23,6 +23,9 @@ type PlayerPropsType = {
 const Player: React.FC<PlayerPropsType> = ({ url, wavePicture }) => {
   const { audioContext } = useSharedAudioContext();
   const source = React.useRef<IAudioBufferSourceNode<IAudioContext>>();
+  const animationFrame = React.useRef<number | null>();
+  const [startTime, setStartTime] = useState(0);
+  const [progress, setProgress] = useState(0);
   const [isTrackLoaded, setIsTrackLoaded] = React.useState(false);
   const [isTrackLoading, setIsTrackLoading] = React.useState(false);
   const [isError, setIsError] = React.useState(false);
@@ -44,6 +47,10 @@ const Player: React.FC<PlayerPropsType> = ({ url, wavePicture }) => {
         responseType: "arraybuffer",
       });
 
+      if (audioContext.state === "suspended") {
+        audioContext.resume();
+      }
+
       const buffer: IAudioBuffer = await new Promise((resolve, reject) => {
         audioContext.decodeAudioData(response.data, resolve, reject);
       });
@@ -51,6 +58,7 @@ const Player: React.FC<PlayerPropsType> = ({ url, wavePicture }) => {
       source.current.buffer = buffer;
       source.current.loop = true;
       source.current.connect(audioContext.destination);
+      setStartTime(audioContext.currentTime);
       source.current.start(0);
       setIsTrackLoaded(true);
     } catch (error) {
@@ -77,6 +85,24 @@ const Player: React.FC<PlayerPropsType> = ({ url, wavePicture }) => {
     setIsTrackLoaded(false);
   };
 
+  const updateProgress = () => {
+    animationFrame.current = requestAnimationFrame(updateProgress);
+    if (isTrackLoaded && audioContext && source.current?.buffer?.duration) {
+      const time = audioContext?.currentTime - startTime;
+      const duration = source.current?.buffer?.duration || 1;
+      setProgress(time / duration);
+    }
+  };
+
+  useEffect(() => {
+    if (isTrackLoaded) {
+      updateProgress();
+    }
+    return () => {
+      animationFrame.current && cancelAnimationFrame(animationFrame.current);
+    };
+  }, [isTrackLoaded]);
+
   return (
     <div className={styles.player}>
       <div className={styles["player__waveform--spacer"]} />
@@ -89,6 +115,16 @@ const Player: React.FC<PlayerPropsType> = ({ url, wavePicture }) => {
           isLoading={isTrackLoading}
         />
       </div>
+      <input
+        className={styles.player__progress}
+        type='range'
+        id='slider'
+        value={progress}
+        min='0'
+        max='1'
+        step='0.005'
+        disabled
+      />
       <ErrorMessage
         className={styles.player__error}
         data-test-id='error-message'

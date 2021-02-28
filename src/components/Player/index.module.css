@@ -31,8 +31,120 @@
   align-items: center;
 }
 
+.player__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+}
+
 .player__error {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.player__progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+.player__progress:focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+.player__progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #000000;
+  height: 20px;
+  width: 16px;
+  border-radius: 20px;
+  background: #ffffff;
+  cursor: pointer;
+  margin-top: -10px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+}
+
+/* All the same stuff for Firefox */
+.player__progress::-moz-range-thumb {
+  border: 1px solid #000000;
+  height: 20px;
+  width: 16px;
+  border-radius: 20px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+.player__progress::-ms-thumb {
+  border: 1px solid #000000;
+  height: 20px;
+  width: 16px;
+  border-radius: 20px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.player__progress::-ms-track {
+  width: 100%;
+
+  /* Hides the slider so custom styles can be added */
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+.player__progress::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  background: #333;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
+.player__progress:focus::-webkit-slider-runnable-track {
+  background: #367ebd;
+}
+
+.player__progress::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  background: #333;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
+.player__progress::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+.player__progress::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+}
+.player__progress:focus::-ms-fill-lower {
+  background: #333;
+}
+.player__progress::-ms-fill-upper {
+  background: #333;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+}
+.player__progress:focus::-ms-fill-upper {
+  background: #367ebd;
+}
+
+@media (min-width: 500px) {
+  .button {
+    padding: 10px;
+    height: 25px;
+    width: 25px;
+  }
 }
