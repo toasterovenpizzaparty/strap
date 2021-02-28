@@ -93,12 +93,12 @@ const Player: React.FC<PlayerPropsType> = ({
   };
 
   const updateProgress = () => {
+    animationFrame.current = requestAnimationFrame(updateProgress);
     if (isTrackLoaded && audioContext && source.current?.buffer?.duration) {
       const time = audioContext?.currentTime - startTime;
       const duration = source.current?.buffer?.duration || 1;
       setProgress(time / duration);
     }
-    animationFrame.current = requestAnimationFrame(updateProgress);
   };
 
   useEffect(() => {
