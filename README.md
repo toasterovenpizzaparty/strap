@@ -7,37 +7,37 @@
 I have tried to showcase a bit of everything one might touch upon when writing Frontend code.
 
 Features include:
-	- Skeletal views
-	- Loading animations for tracks (lottie)
-	- Suspense for router lazy-loading
-	- A shared AudioContext for easy usage within components using hooks
-	- Basic playback start, stop, progress
-	- A simple Equalizer to manipulate audio during playback.
-	- Responsive layout
+- Skeletal views
+- Loading animations for tracks (lottie)
+- Suspense for router lazy-loading
+- A shared AudioContext for easy usage within components using hooks
+- Basic playback start, stop, progress
+- A simple Equalizer to manipulate audio during playback.
+- Responsive layout
 
 Structure:
-	- Assets
-    	- Holds all our assets, e.g. fonts, lottie, svg.
-	- Components
-    	- Holds all our basic usage components, e.g. TextFields, Buttons etc.
-  	- Config
-    	- Holds configuration and clients e.g. SoundCloud API axios client
-  	- Hooks
-    	- Holds all of our custom hooks
-        	- shared-audiocontext.ts
-			Provides a hook to retrieve the audioContext setup in sharedAudioContextProvider
-	- Pages
-    	- Holds all the pages within the project, currently one page.
-        	- Partials
-			Provides partials views, keeping logic easier to digest.
-	- Providers
-    	- Holds all of our context providers
-        	- shared-audiocontext.ts
-			Provides a context for a shared audiocontext
-  	- Routes
-    	- Holds all routes available
-	- Types
-    	- Holds types shared across files, and general setup types.
+- Assets
+	- Holds all our assets, e.g. fonts, lottie, svg.
+- Components
+	- Holds all our basic usage components, e.g. TextFields, Buttons etc.
+- Config
+	- Holds configuration and clients e.g. SoundCloud API axios client
+- Hooks
+	- Holds all of our custom hooks
+	- shared-audiocontext.ts
+		Provides a hook to retrieve the audioContext setup in sharedAudioContextProvider
+- Pages
+	- Holds all the pages within the project, currently one page.
+	- Partials
+		Provides partials views, keeping logic easier to digest.
+- Providers
+	- Holds all of our context providers
+	- shared-audiocontext.ts
+		Provides a context for a shared audiocontext
+- Routes
+	- Holds all routes available
+- Types
+	- Holds types shared across files, and general setup types.
 
 Compatibility: 
 	latest browsers.
