@@ -1,4 +1,4 @@
-import React, { createContext, useRef, useEffect } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { AudioContext } from "standardized-audio-context";
 
 type AudioContextType = {
@@ -17,21 +17,23 @@ export const SharedAudioContext = createContext<AudioContextType>({
  * @description Provides a (shared) AudioContext to consumers.
  */
 const SharedAudioContextProvider: React.FC = ({ children }) => {
-  const audioContextRef = useRef<AudioContext | undefined>(new AudioContext());
+  const [audioContext, setAudioContext] = useState<AudioContext | undefined>(
+    new AudioContext()
+  );
 
   useEffect(() => {
     // closes the audio context, releasing any system audio resources that it uses.
     return () => {
-      audioContextRef.current?.close();
+      audioContext?.close();
     };
   }, []);
   return (
     <SharedAudioContext.Provider
       value={{
         setAudioContext: (audioContext) => {
-          audioContextRef.current = audioContext;
+          setAudioContext(audioContext);
         },
-        audioContext: audioContextRef.current,
+        audioContext,
       }}
     >
       {children}
