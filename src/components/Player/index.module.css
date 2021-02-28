@@ -148,3 +148,16 @@
     width: 25px;
   }
 }
+
+.player__equalizer {
+  display: none;
+}
+
+@media (min-width: 950px) {
+  .player__equalizer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+  }
+}

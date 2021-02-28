@@ -1,0 +1,11 @@
+.equalizer {
+  margin: 20px;
+  padding: 20px;
+  background-color: #333;
+}
+
+.equalizer__controls > label {
+  min-width: 110px;
+  display: inline-block;
+  font-size: 1.2rem;
+}

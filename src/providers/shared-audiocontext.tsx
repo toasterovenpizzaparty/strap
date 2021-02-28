@@ -17,10 +17,9 @@ export const SharedAudioContext = createContext<AudioContextType>({
  * @description Provides a (shared) AudioContext to consumers.
  */
 const SharedAudioContextProvider: React.FC = ({ children }) => {
-  const audioContextRef = useRef<AudioContext | undefined>();
-  console.log("hi");
+  const audioContextRef = useRef<AudioContext | undefined>(new AudioContext());
+
   useEffect(() => {
-    audioContextRef.current = new AudioContext();
     // closes the audio context, releasing any system audio resources that it uses.
     return () => {
       audioContextRef.current?.close();

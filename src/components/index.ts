@@ -6,3 +6,4 @@ export { default as Track } from "./Track";
 export { default as LottieAnimation } from "./LottieAnimation";
 export { default as PlayButton } from "./PlayButton";
 export { default as ErrorMessage } from "./ErrorMessage";
+export { default as Equalizer } from "./Equalizer";

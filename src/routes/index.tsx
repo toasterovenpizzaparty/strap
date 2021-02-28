@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 const SearchPage = React.lazy(() => import("../pages/search"));
 
 export const Pages = () => (
-  <Suspense fallback={<p>Loading...</p>}>
+  <Suspense fallback={<p style={{ color: "#fff" }}>Loading...</p>}>
     <Switch>
       <Route exact path='/' component={SearchPage} />
       <Route path='/search/track/:track' component={SearchPage} />

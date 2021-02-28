@@ -6,12 +6,14 @@ import {
 } from "standardized-audio-context";
 import { client } from "../../config/axios";
 import { useSharedAudioContext } from "../../hooks/shared-audiocontext";
-import { PlayButton, ErrorMessage } from "../../components";
+import { PlayButton, ErrorMessage, Equalizer } from "../../components";
 import styles from "./index.module.css";
+import Button from "../Button";
 
 type PlayerPropsType = {
   url: string;
   wavePicture?: string;
+  isProgressUpdated?: boolean;
 };
 
 /**
@@ -20,12 +22,17 @@ type PlayerPropsType = {
  * @param wavePicture The url to the (audio) waveform picture
  * @description Provides a player for loading and playback of tracks through WebAudio.
  */
-const Player: React.FC<PlayerPropsType> = ({ url, wavePicture }) => {
+const Player: React.FC<PlayerPropsType> = ({
+  url,
+  wavePicture,
+  isProgressUpdated = true,
+}) => {
   const { audioContext } = useSharedAudioContext();
   const source = React.useRef<IAudioBufferSourceNode<IAudioContext>>();
   const animationFrame = React.useRef<number | null>();
   const [startTime, setStartTime] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [isEqualizerVisible, setIsEqualizerVisible] = React.useState(false);
   const [isTrackLoaded, setIsTrackLoaded] = React.useState(false);
   const [isTrackLoading, setIsTrackLoading] = React.useState(false);
   const [isError, setIsError] = React.useState(false);
@@ -86,27 +93,30 @@ const Player: React.FC<PlayerPropsType> = ({ url, wavePicture }) => {
   };
 
   const updateProgress = () => {
-    animationFrame.current = requestAnimationFrame(updateProgress);
     if (isTrackLoaded && audioContext && source.current?.buffer?.duration) {
       const time = audioContext?.currentTime - startTime;
       const duration = source.current?.buffer?.duration || 1;
       setProgress(time / duration);
     }
+    animationFrame.current = requestAnimationFrame(updateProgress);
   };
 
   useEffect(() => {
-    if (isTrackLoaded) {
+    if (isTrackLoaded && isProgressUpdated) {
       updateProgress();
     }
     return () => {
       animationFrame.current && cancelAnimationFrame(animationFrame.current);
     };
-  }, [isTrackLoaded]);
+  }, [isTrackLoaded, isProgressUpdated]);
 
   return (
     <div className={styles.player}>
       <div className={styles["player__waveform--spacer"]} />
       <img className={styles["player__waveform"]} src={wavePicture} />
+      <div className={styles.player__equalizer}>
+        <Equalizer source={isTrackLoaded ? source.current : undefined} />
+      </div>
       <div className={styles["player__controls"]}>
         <PlayButton
           data-test-id='play-button'

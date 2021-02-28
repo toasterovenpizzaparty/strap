@@ -19,9 +19,17 @@ import Player from ".";
  * Test with mock AudioContext.
  * Needs e2e in production to test the audiocontext.
  */
+beforeEach(() => {
+  jest.spyOn(window, "requestAnimationFrame").mockImplementation((cb) => {});
+  jest.spyOn(window, "cancelAnimationFrame").mockImplementation((cb) => {});
+});
 
+afterEach(() => {
+  window.requestAnimationFrame.mockRestore();
+});
 const loadAndPlayTrack = async () => {
   /* Setup axios mocks */
+
   axios.create.mockImplementation((config) => axios);
   axios.request.mockImplementationOnce(() => ({
     data: new ArrayBuffer(0),
@@ -33,7 +41,7 @@ const loadAndPlayTrack = async () => {
 
   const wrapper = mount(
     <SharedAudioContext>
-      <Player url='http://myurltostream' />
+      <Player url='http://myurltostream' isProgressUpdated={false} />
     </SharedAudioContext>
   );
 
@@ -120,7 +128,7 @@ describe("<Player />", () => {
   it("Shows an error message upon failing to load a track", async () => {
     /* Setup axios mocks */
     axios.create.mockImplementation((config) => axios);
-    axios.request.mockRejectedValueOnce();
+    axios.request.mockRejectedValueOnce("Jest: This should throw an error");
     lottie.loadAnimation.mockImplementation(() => ({
       setSpeed: jest.fn(),
     }));
